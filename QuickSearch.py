@@ -1,6 +1,8 @@
 from bs4 import BeautifulSoup
 import urllib3
 import certifi
+import datetime
+currentDT = datetime.datetime.now()
 Wordlist = [line.rstrip('\n') for line in open("Text.txt")]
 print(Wordlist)
 Total = len(Wordlist)
@@ -33,10 +35,11 @@ for w in Wordlist:
     percent = len(A) / Total * 100
     print("Done " + str(len(A)) + "/" + str(Total) + "     " + str(round(percent, 1)) + "%")
 
-
-file = open("Output.txt", "w", encoding='utf-8')
-
-for dict in A:
-    file.write(dict["Word"] + "\t" + dict["Pronunciation"] + "\t" + dict["Definition"] + "\t" + dict["Example"] + "\n")
-
+# output
+file = open("Output/" + currentDT.strftime("%Y-%m-%d %H_%M_%S") + ".txt", "w", encoding='utf-8')
+for dic in A:
+    file.write(dic["Word"] + "\t" +
+               dic["Pronunciation"] + "\t" +
+               dic["Definition"] + "\t" +
+               dic["Example"] + "\n")
 file.close()
