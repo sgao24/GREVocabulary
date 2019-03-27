@@ -7,7 +7,7 @@ currentDT = datetime.datetime.now()
 # Extract WordList from Text.txt
 WordList = [line.rstrip('\n') for line in open("Text.txt")]
 print(WordList)
-print()
+print("==========================")
 Total = len(WordList)
 http = urllib3.PoolManager(cert_reqs='CERT_REQUIRED', ca_certs=certifi.where())
 
@@ -17,7 +17,7 @@ A = []
 
 # Searching website for pron, def, eg, ...
 for w in WordList:
-    print("Searching " + w + " ...")
+    print("Searching [" + w + "] ...")
     A.append({
         "Word": w,
         "Pronunciation": "",
@@ -61,4 +61,5 @@ for dic in A:
 file.close()
 
 # Done
-print("File successfully saved to Output/" + currentDT.strftime("%Y-%m-%d %H_%M_%S") + ".txt")
+print("==========================")
+print("File successfully saved to [Output/" + currentDT.strftime("%Y-%m-%d %H_%M_%S") + ".txt]")
