@@ -3,9 +3,19 @@ import urllib3
 import certifi
 import datetime
 currentDT = datetime.datetime.now()
+import string
+clipboard = open("clipboard.txt", "r", encoding="utf-16LE")
+WordList = []
+# Read clipboard.txt
+for line in clipboard:
+    if line != "\n":
+        WordList.append(line.rstrip('\n'))
+if '\ufeff' in WordList[0]:
+    WordList[0] = WordList[0].replace('\ufeff', '')
 
-# Extract WordList from Text.txt
-WordList = [line.rstrip('\n') for line in open("Text.txt")]
+# Delete all punctuations
+WordList = [''.join(c for c in s if c not in string.punctuation) for s in WordList]
+
 print(WordList)
 print("==========================")
 Total = len(WordList)
@@ -54,7 +64,7 @@ for w in WordList:
     percent = len(A) / Total * 100
     left = 100 - percent
     print("Done " + str(len(A)) + "/" + str(Total) + "\t"
-          + "█" * round(percent / 2) + " " * round(left / 2)
+          + "█" * round(percent/2) + " " * round(left/2)
           + "\t" + str(round(percent, 1)) + "%")
 
 # Output to a text file
