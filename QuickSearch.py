@@ -69,3 +69,13 @@ file.close()
 # Done
 print("==========================")
 print("File successfully saved to [Output/" + currentDT.strftime("%Y-%m-%d %H_%M_%S") + ".txt]")
+
+
+URL_file = open("URL/" + currentDT.strftime("%Y-%m-%d %H_%M_%S") + ".html", "w", encoding='utf-8')
+URL_file.write('<html><body>' + "\n")
+for w in WordList:
+    URL_file.write('<a href="https://dictionary.cambridge.org/dictionary/english/' + w
+                   + '" target="_blank">' + w + '</a></br>' + "\n")
+URL_file.write('<br><br><br>' + "\n" + '</body></html>')
+URL_file.close()
+print("URL successfully printed to [URL/" + currentDT.strftime("%Y-%m-%d %H_%M_%S") + ".html]")
